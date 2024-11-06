@@ -83,16 +83,27 @@ header {
             font-size: 64px;
             width: 64px;
             padding: 8px 0;
+            text-align: center;
 
-
+            /* Remove as setas do input number */
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            /* Para Firefox */
+            -moz-appearance: textfield;
         }
     }
 
     & .votacao-texto {
         margin-top: 16px;
+        max-width: 100px;
     }
 
     & .votacao-img {
+        width: 100px;
+        height: 140px;
         & img {
             width: 100px;
             height: 140px;
@@ -105,10 +116,9 @@ header {
         justify-content: space-between;
 
         & .votacao-botao {
-            padding: 16px;
-            font-size: 20px;
+            padding: 8px;
             color: black;
-            width: 7rem;
+            width: 5rem;
         }
 
         & .corrige {
@@ -118,5 +128,93 @@ header {
         & .confirma {
             background-color: green;
         }
+
+        & .branco {
+          background-color: white;
+          border: 1px solid black;
+        }
     }
+}
+
+
+@media (min-width: 640px) {
+  .votacao {
+    width: 50vw;
+    
+    & .votacao-dinamic {
+      justify-content: space-between;
+
+      & .votacao-inputs {
+        gap: 24px;
+
+        & input {
+          width: 80px;
+          font-size: 80px;
+        }
+      }
+
+      & .votacao-texto {
+        font-size: 32px;
+      }
+
+      & .votacao-img {
+        width: 150px;
+        height: 230px;
+        & img {
+          width: 150px;
+          height: 230px;
+        }
+      }
+
+    }
+    & .votacao-botoes {
+
+      & .votacao-botao {
+        
+        width: 7rem;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .votacao {
+    
+    & .votacao-dinamic {
+      justify-content: space-between;
+
+      & .votacao-inputs {
+        gap: 24px;
+
+        & input {
+          width: 160px;
+          font-size: 160px;
+        }
+      }
+
+      & .votacao-texto {
+        font-size: 48px;
+      }
+
+      & .votacao-img {
+        width: 300px;
+        height: 460px;
+        & img {
+          width: 300px;
+          height: 460px;
+        }
+      }
+
+    }
+    & .votacao-botoes {
+
+      & .votacao-botao {
+        
+        width: 10rem;
+        padding: 24px;
+        font-size: 24px;
+      }
+    }
+  }
 }
