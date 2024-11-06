@@ -30,12 +30,15 @@
           <fieldset>
             <div class="login">
               <label for="user-ra">RA</label>
-              <input type="text" placeholder="Digite seu RA" id="user-ra" />
+              <input type="text" placeholder="Digite seu RA" id="raInput" maxlength="9" />
+              <div id="mensagem"></div>
             </div>
-            <button>Iniciar</button>
+            <button onclick="verificarRA(event)">Iniciar</button>
           </fieldset>
         </form>
       </section>
     </main>
+
+    <script src="./js/login.js"></script>
   </body>
 </html>
