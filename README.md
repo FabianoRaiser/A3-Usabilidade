@@ -25,8 +25,7 @@ cd A3-Usabilidade
 
 3. Configure o PostgreSQL:
    - Crie um banco de dados chamado `univota`
-   - Execute os scripts SQL da pasta `back-end/database/`
-
+   - O sequelize criará as tabelas automaticamente
 4. Configure as variáveis de ambiente:
    - Crie um arquivo `.env` na pasta `back-end/`
    - Adicione as seguintes variáveis:
