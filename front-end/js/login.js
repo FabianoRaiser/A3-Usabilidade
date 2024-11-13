@@ -17,7 +17,6 @@ function verificarRA(event) {
     const usuario = listaRA.find(item => item.ra === ra);
 
     const mensagemElement = document.getElementById('mensagem');
-    const container = document.getElementById('loginContainer');
 
     if (usuario) {
         if (usuario.votou) {
@@ -38,7 +37,6 @@ function verificarRA(event) {
     } else {
         mensagemElement.textContent = "RA não encontrado!";
         mensagemElement.style.color = "red";
-        container.classList.add("habilitar-erro");
     }
 }
 
