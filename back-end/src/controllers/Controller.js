@@ -40,7 +40,7 @@ class Controller {
     async update(req, res) {
         try {
             const [updated] = await this.model.update(req.body, {
-                where: { id: req.params.id }
+                where: { numero: req.params.numero }
             });
             if (!updated) {
                 return res.status(404).json({ message: 'Item não encontrado' });
@@ -56,7 +56,7 @@ class Controller {
     async delete(req, res) {
         try {
             const deleted = await this.model.destroy({
-                where: { id: req.params.id }
+                where: { numero: req.params.numero }
             });
             if (!deleted) {
                 return res.status(404).json({ message: 'Item não encontrado' });

@@ -1,42 +1,49 @@
-const listaRA = [
-    { ra: 122320429, votou: false },
-    { ra: 122320430, votou: true },
-    // Adicione mais RAs aqui
-];
-
 // Adiciona autofocus no input do RA quando a página carrega
 window.addEventListener('load', () => {
     const raInput = document.getElementById('raInput');
     raInput.focus();
 });
 
-function verificarRA(event) {
+async function verificarRA(event) {
     event.preventDefault();
     const raInput = document.getElementById('raInput').value;
-    const ra = parseInt(raInput);
-    const usuario = listaRA.find(item => item.ra === ra);
-
     const mensagemElement = document.getElementById('mensagem');
 
-    if (usuario) {
-        if (usuario.votou) {
-            mensagemElement.textContent = "Acesso negado! Este RA já votou.";
-            mensagemElement.style.color = "goldenrod";
+    try {
+        const response = await fetch('http://localhost:3001/eleitores/verificar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ra: raInput })
+        });
+        
+        const usuario = await response.json();
+
+        if (response.ok) {
+            if (usuario.votou) {
+                mensagemElement.textContent = "Acesso negado! Este RA já votou.";
+                mensagemElement.style.color = "goldenrod";
+            } else {
+                mensagemElement.textContent = "Acesso liberado! Redirecionando...";
+                mensagemElement.style.color = "lightgreen";
+                
+                setTimeout(() => {
+                    try {
+                        window.location.replace('./pages/votacao.html');
+                    } catch (e) {
+                        window.location.href = './pages/votacao.html';
+                    }
+                }, 800);
+            }
         } else {
-            mensagemElement.textContent = "Acesso liberado! Redirecionando...";
-            mensagemElement.style.color = "lightgreen";
-            
-            setTimeout(() => {
-                try {
-                    window.location.replace('./pages/votacao.html');
-                } catch (e) {
-                    window.location.href = './pages/votacao.html';
-                }
-            }, 800);
+            mensagemElement.textContent = "RA não encontrado!";
+            mensagemElement.style.color = "red";
         }
-    } else {
-        mensagemElement.textContent = "RA não encontrado!";
+    } catch (error) {
+        mensagemElement.textContent = "Erro ao verificar RA. Tente novamente.";
         mensagemElement.style.color = "red";
+        console.error('Erro:', error);
     }
 }
 

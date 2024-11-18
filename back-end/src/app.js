@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const cors = require('cors');
 const sequelize = require('./config/dbConnect');
 
 // Importa os modelos e associações
@@ -9,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Sincroniza os modelos com o banco de dados
-sequelize.sync({ force: false })
+sequelize.sync({ force: true, alter: true })
     .then(() => {
         console.log('Banco de dados sincronizado com sucesso');
     })
@@ -18,6 +19,11 @@ sequelize.sync({ force: false })
     });
 
 app.use(express.json());
+app.use(cors({
+    origin: ['http://localhost:5500', 'http://127.0.0.1:5500'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+}));
 app.use(routes);
 
 app.listen(port, () => {

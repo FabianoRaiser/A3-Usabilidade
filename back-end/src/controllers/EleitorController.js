@@ -42,13 +42,22 @@ class EleitorController extends Controller {
     // Método específico para verificar se eleitor já votou
     async verificarVoto(req, res) {
         try {
+            const { ra } = req.body;
+
+            if (!ra) {
+                return res.status(400).json({ message: 'RA não fornecido' });
+            }
+
             const eleitor = await this.model.findOne({
-                where: { ra: req.params.ra }
+                where: { ra }
             });
+
             if (!eleitor) {
                 return res.status(404).json({ message: 'Eleitor não encontrado' });
             }
+
             return res.status(200).json({ votou: eleitor.votou });
+            
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }

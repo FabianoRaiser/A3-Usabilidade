@@ -8,8 +8,8 @@ router
     .post(eleitorController.createMany.bind(eleitorController));
 
 router
-    .route('/eleitores/verificar/:ra')
-    .get(eleitorController.verificarVoto.bind(eleitorController));
+    .route('/eleitores/verificar')
+    .post(eleitorController.verificarVoto.bind(eleitorController));
 
 router
     .route('/eleitores')
