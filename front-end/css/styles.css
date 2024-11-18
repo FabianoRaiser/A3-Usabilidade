@@ -74,19 +74,19 @@ header {
     & .votacao-dinamic {
         display: flex;
         gap: 24px;
-    }
-
-    & .votacao-inputs {
+      }
+      
+      & .votacao-inputs {
         display: flex;
         gap: 16px;
         & input {
-            font-size: 64px;
-            width: 64px;
-            padding: 8px 0;
-            text-align: center;
-
-            /* Remove as setas do input number */
-            &::-webkit-inner-spin-button,
+          font-size: 64px;
+          width: 64px;
+          padding: 8px 0;
+          text-align: center;
+          
+          /* Remove as setas do input number */
+          &::-webkit-inner-spin-button,
             &::-webkit-outer-spin-button {
                 -webkit-appearance: none;
                 margin: 0;
@@ -100,14 +100,15 @@ header {
         margin-top: 16px;
         max-width: 100px;
     }
-
+    
     & .votacao-img {
         width: 100px;
         height: 140px;
         & img {
             width: 100px;
             height: 140px;
-            object-fit: cover;
+            object-fit: contain;
+            opacity: 0;
         }
     }
 
