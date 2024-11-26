@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Sincroniza os modelos com o banco de dados
-sequelize.sync({ force: true, alter: true })
+sequelize.sync({ alter: true })
     .then(() => {
         console.log('Banco de dados sincronizado com sucesso');
     })
